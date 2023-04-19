@@ -1,0 +1,3 @@
+# MySQL employee tracker
+
+## Description
