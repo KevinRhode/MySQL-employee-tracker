@@ -5,7 +5,7 @@ const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Express middleware
@@ -19,14 +19,20 @@ const db = mysql.createConnection(
     // MySQL username,
     user: 'root',
     // MySQL password
-    password: '',
-    database: 'classlist_db'
+    password: 'root',
+    database: 'empTrack_db'
   },
-  console.log(`Connected to the classlist_db database.`)
+  console.log(`Connected to the empTrack_db database.`)
 );
 
 // Query database
-db.query('SELECT * FROM students', function (err, results) {
+db.query('SELECT * FROM role', function (err, results) {
+  console.log(results);
+});
+db.query('SELECT * FROM department', function (err, results) {
+  console.log(results);
+});
+db.query('SELECT * FROM employee', function (err, results) {
   console.log(results);
 });
 
