@@ -1,6 +1,7 @@
 const Question = require('./lib/question.js');
 //const {allEmp} = require('./lib/prepSQL.js')
 const inquirer = require('inquirer');
+const mainMenu = require('./lib/main.js');
 const api = require('./routes/index.js');
 
 const express = require('express');
@@ -27,6 +28,10 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   //console.log(`Server running on port ${PORT}`);
 });
+
+const init = async ()=>{
+   mainMenu();
+}
 
 // const prompt = inquirer.createPromptModule();
 // let runProgram = true
