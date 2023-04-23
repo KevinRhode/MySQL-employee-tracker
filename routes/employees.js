@@ -1,8 +1,10 @@
-const express = require('express').Router;
-const {allEmp,allDepartment,allRole, addEmp,updateEmp,addRole} = require('../lib/prepSQL.js');
-const employees = express();
+const express = require('express');
+const Router = require('express').Router;
+const {allEmp,allDepartment,allRole, addEmp,updateEmp,addRole,titleOfRole} = require('../lib/prepSQL.js');
+const employees = Router();
 
-
+// employees.use(express.urlencoded({ extended: false }));
+// employees.use(express.json());
 
 // GET request for employees
 employees.get('/employees', async (req, res) => {  
@@ -21,18 +23,22 @@ employees.post('/employees', async (req, res) => {
   const { first_name, last_name, role_id, manager_id } = req.body;
   
   //const requestedTerm = req.params.term.toLowerCase();
+  // console.info(first_name);
+  // console.info(last_name);
+  // console.info(role_id);
+  // console.info(manager_id);
 
   // If all the required properties are present
-  if (first_name && last_name && role_id && manager_id) {
+  if (first_name && last_name && role_id) {
     //db stuff here
-    await addEmp(first_name,last_name,role_id,manager_id);
+    await addEmp(first_name,last_name,role_id,manager_id=== undefined?"NULL":manager_id);
 
     const response = {
       status: 'success',
       body: req.body,
     };
 
-    console.log(response);
+    //console.log(response);
     res.status(201).json(response);
   } else {
     res.status(500).json('Error in adding employee');
@@ -59,7 +65,7 @@ employees.put('/employees/:id', async (req, res) => {
       body: req.body,
     };
 
-    console.log(response);
+    //console.log(response);
     res.status(201).json(response);
   } else {
     res.status(500).json('Error in posting update');
@@ -75,6 +81,16 @@ employees.get('/roles', async (req, res) => {
   //return results
   return res;
   
+});
+//get request for role filtered to names
+employees.get('/roles/titles',async (req,res)=>{
+ // Query database  
+ res.status(200).send(JSON.parse(await titleOfRole()));
+  
+ //return results
+ return res;
+
+
 });
 //POST add role
 employees.post('/roles', async (req, res) => {  
@@ -93,7 +109,7 @@ employees.post('/roles', async (req, res) => {
       body: req.body,
     };
 
-    console.log(response);
+    // console.log(response);
     res.status(201).json(response);
   } else {
     res.status(500).json('Error in adding role');
