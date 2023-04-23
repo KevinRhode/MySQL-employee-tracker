@@ -1,9 +1,11 @@
 const Question = require('./lib/question.js');
+//const {allEmp} = require('./lib/prepSQL.js')
 const inquirer = require('inquirer');
+const api = require('./routes/index.js');
 
 const express = require('express');
 // Import and require mysql2
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -12,29 +14,10 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: 'root',
-    database: 'empTrack_db'
-  },
-  console.log(`Connected to the empTrack_db database.`)
-);
 
-// Query database
-db.query('SELECT * FROM role', function (err, results) {
-  console.log(results);
-});
-db.query('SELECT * FROM department', function (err, results) {
-  console.log(results);
-});
-db.query('SELECT * FROM employee', function (err, results) {
-  console.log(results);
-});
+app.use('/',api);
+
+
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
@@ -42,5 +25,58 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  //console.log(`Server running on port ${PORT}`);
 });
+
+// const prompt = inquirer.createPromptModule();
+// let runProgram = true
+// while(runProgram){
+//   await prompt([
+//     new Question(
+//       'command',
+//       'list',
+//       'What would you like to do?',
+//       [
+//         'View all employees',
+//         'add employees',
+//         'update employee role',
+//         'view all roles',
+//         'add role',
+//         'view all departments',
+//         'add department',
+//         'quit'
+//       ]
+//       ),
+//   ],answers);
+// }
+
+
+
+
+
+// let runProgram = true;
+// while (runProgram) {
+//   inquirer
+//   .prompt([
+//     new Question(
+//       'command',
+//       'list',
+//       'What would you like to do?',
+//       [
+//         'View all employees',
+//         'add employees',
+//         'update employee role',
+//         'view all roles',
+//         'add role',
+//         'view all departments',
+//         'add department',
+//         'quit'
+//       ]
+//       ),
+//   ])
+//   .then((response)=>{
+//     console.log(response);
+//     //return response;
+// })
+//   .catch((err)=>console.log(err));
+// }
