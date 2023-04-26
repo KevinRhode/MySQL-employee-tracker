@@ -1,15 +1,30 @@
 const express = require('express');
 const Router = require('express').Router;
-const {allEmp,allDepartment,allRole, addEmp,updateEmp,addRole,titleOfRole,addDepartment} = require('../lib/prepSQL.js');
+const {allEmp, addEmp,updateEmp,viewAllEmp,managerLimit} = require('../lib/prepSQL.js');
 const employees = Router();
-
-// employees.use(express.urlencoded({ extended: false }));
-// employees.use(express.json());
 
 // GET request for employees
 employees.get('/employees', async (req, res) => {  
   // Query database  S
   res.status(200).send(JSON.parse(await allEmp()));
+  
+  //return results
+  return res;
+  
+});
+// GET request for employees/view
+employees.get('/employees/view', async (req, res) => {  
+  // Query database  S
+  res.status(200).send(JSON.parse(await viewAllEmp()));
+  
+  //return results
+  return res;
+  
+});
+employees.get('/employees/managers', async (req, res) => {  
+  // Query database  S
+  const uni = await managerLimit();
+  res.status(200).send(await managerLimit());
   
   //return results
   return res;
@@ -73,93 +88,9 @@ employees.put('/employees/:id', async (req, res) => {
   //return results
   return res;
 });
-// GET request for role
-employees.get('/roles', async (req, res) => {  
-  // Query database  
-  res.status(200).send(JSON.parse(await allRole()));
-  
-  //return results
-  return res;
-  
-});
-//get request for role filtered to names
-employees.get('/roles/titles',async (req,res)=>{
- // Query database  
- res.status(200).send(JSON.parse(await titleOfRole()));
-  
- //return results
- return res;
 
 
-});
-//POST add role
-employees.post('/roles', async (req, res) => {  
-  // Query database  
-  //res.status(200).send(JSON.parse(await allEmp()));
-  // Destructuring assignment for the items in req.body
-  const { title, salary, department_id } = req.body;
 
-  // If all the required properties are present
-  if (title && salary && department_id ) {
-    //db stuff here
-    await addRole(title,salary,department_id);
-
-    const response = {
-      status: 'success',
-      body: req.body,
-    };
-
-    // console.log(response);
-    res.status(201).json(response);
-  } else {
-    res.status(500).json('Error in adding role');
-  }
-  //return results
-  return res;
-  
-});
-
-
-// GET request for department
-employees.get('/departments', async (req, res) => {  
-  // Query database  
-  res.status(200).send(JSON.parse(await allDepartment()));
-  
-  //return results
-  return res;
-  
-});
-
-employees.post('/departments',async(req,res) =>{
-  // Query database  
-  // res.status(200).send(JSON.parse(await allEmp()));
-  // Destructuring assignment for the items in req.body
-  const { name } = req.body;
-  
-  // const requestedTerm = req.params.term.toLowerCase();
-  // console.info(first_name);
-  // console.info(last_name);
-  // console.info(role_id);
-  // console.info(manager_id);
-
-  // If all the required properties are present
-  if (name) {
-    // db stuff here
-    await addDepartment(name);
-
-    const response = {
-      status: 'success',
-      body: req.body,
-    };
-
-    // console.log(response);
-    res.status(201).json(response);
-  } else {
-    res.status(500).json('Error in adding department');
-  }
-  //return results
-  return res;
-});
 
 
 

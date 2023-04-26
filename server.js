@@ -1,7 +1,6 @@
-const Question = require('./lib/question.js');
-//const {allEmp} = require('./lib/prepSQL.js')
-const inquirer = require('inquirer');
+
 const mainMenu = require('./lib/main.js');
+const {empLogo} = require('./lib/printmydata.js')
 const api = require('./routes/index.js');
 
 const express = require('express');
@@ -18,9 +17,6 @@ app.use(express.json());
 
 app.use('/',api);
 
-
-
-
 // Default response for any other request (Not Found)
 app.use((req, res) => {
   res.status(404).end();
@@ -31,6 +27,7 @@ app.listen(PORT, () => {
 });
 
 const init = async ()=>{
+   empLogo();
    mainMenu();
 }
 
