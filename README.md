@@ -61,20 +61,20 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Usage
 
- Navigate to index.js file location in terminal  
- Node index.js  
- this will start the program, and begin asking for user inputs
- Demo is of 
+Navigate to index.js file location in terminal  
+Node index.js  
+this will start the program, and begin asking for user inputs
+Demo is of 
    
-   Basic Functions -   
-    View all Emp, Roles, Departments,  
-      Add Emp,  
-       Update Emp Role,  
-        Add Role,  
-         Add Department,  
-          Quit
+Basic Functions -   
+View all Emp, Roles, Departments,  
+Add Emp,  
+Update Emp Role,  
+Add Role,  
+Add Department,  
+Quit
 
-><Demo only shows basic functions>
+Demo only shows basic functions
  [Demo](https://drive.google.com/file/d/1yqCcBHQa8HxnyhlX4t1lHXM1DBMCHzjv/view)  
  
 Adv Functions-  
@@ -92,9 +92,3 @@ View Employees by Department
 
 MIT License - https://choosealicense.com/licenses/mit/
 
-## Tests
-
-TDD - Jest with shapes.js.
-
-to Run tests, Navigate to index.js file location in terminal.
-enter  npm run test  into the terminal.  this will run the shapes and index tests
