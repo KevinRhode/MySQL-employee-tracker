@@ -41,8 +41,8 @@ THEN I am prompted to select an employee to update and their new role and this i
   MySQL - MAC --  
   brew install mysql  
   The server is set up without a default root password. You can connect to it using the following command:  
-  mysql -uroot  
-  Important: (Optional) You should change the root password after you install MySQL Server. You can do this with the following command:  
+  mysql -u root  
+  Important: You should change the root password after you install MySQL Server. You can do this with the following command:  
   mysql_secure_installation  
     
   MySQL -PC -- (TA Will Ref)  
@@ -75,7 +75,7 @@ Add Department,
 Quit
 
 Demo only shows basic functions
- [Demo](https://drive.google.com/file/d/1yqCcBHQa8HxnyhlX4t1lHXM1DBMCHzjv/view)  
+ [Demo]()  
  
 Adv Functions-  
 Delete,  
@@ -86,7 +86,8 @@ View Employees by Department
 
 ## Credits
 [inquirer](https://www.npmjs.com/package/inquirer)  
-[console logo](https://patorjk.com/software/taag/#p=display&f=Big&t=Employee%20Manager)
+[console logo](https://patorjk.com/software/taag/#p=display&f=Big&t=Employee%20Manager)  
+[install MySQL TA Doc Ref](https://github.com/Will-Nollert)
 
 ## License
 
