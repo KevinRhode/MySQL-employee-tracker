@@ -49,6 +49,8 @@ THEN I am prompted to select an employee to update and their new role and this i
   MySQL https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/   
   PC users: if you get the error “command not found” please refer to the SQL documentation on customizing the PATH   
   https://dev.mysql.com/doc/mysql-windows-excerpt/5.7/en/mysql-installation-windows-path.html  
+  Install MySQL Shell
+  https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-getting-started.html
   (End Ref)
 
   Clone - git clone git@github.com:KevinRhode/svg-logo-gen.git  
@@ -62,7 +64,17 @@ THEN I am prompted to select an employee to update and their new role and this i
 ## Usage
 
 Navigate to index.js file location in terminal  
-Node index.js  
+mysql -u root -p
+enter the password you set up
+
+once in mysql
+SOURCE db/schema.sql;
+enter
+SOURCE db/seeds.sql;
+enter
+
+npm start
+
 this will start the program, and begin asking for user inputs
 Demo is of 
    
@@ -75,7 +87,7 @@ Add Department,
 Quit
 
 Demo only shows basic functions
- [Demo]()  
+ [Demo](https://drive.google.com/file/d/1MK2Jl3LPCXwB_2GZyk03-dZRg7xHAusp/view)  
  
 Adv Functions-  
 Delete,  
